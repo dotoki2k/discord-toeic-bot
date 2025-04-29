@@ -2,10 +2,12 @@ import os
 import json
 from question import Question
 
+
 def check_data_is_exist(session):
     result = session.query(Question).first() is not None
     print(result)
     return result
+
 
 def insert_data_to_db(session):
     if check_data_is_exist(session):

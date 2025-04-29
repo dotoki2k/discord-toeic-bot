@@ -37,6 +37,7 @@ url_list = [
     "https://study4.com/tests/toeic/?term=2024",
 ]
 
+
 def crawl_exam_paper():
     try:
         exam_data = {}
@@ -71,7 +72,9 @@ def crawl_exam_paper():
                         break
                 transcript_url = f"https://study4.com{href_part5}"
                 part5_id = href_part5.split("/")[-3]
-                question_url = f"https://study4.com/tests/{exam_id}/practice/?part={part5_id}"
+                question_url = (
+                    f"https://study4.com/tests/{exam_id}/practice/?part={part5_id}"
+                )
                 exam_data[exam_title] = {
                     "questions": question_url,
                     "transcript": transcript_url,
@@ -101,7 +104,9 @@ def crawl_exam_data():
             transcript_content = response_transcript.text
 
             transcript_soup = BeautifulSoup(transcript_content, "html.parser")
-            transcript_wrapper = transcript_soup.find_all("div", class_="question-wrapper")
+            transcript_wrapper = transcript_soup.find_all(
+                "div", class_="question-wrapper"
+            )
 
             transcript_data = {}
             for question in transcript_wrapper:
@@ -161,6 +166,7 @@ def crawl_exam_data():
         total_question = {}
     except Exception as e:
         print(f"Got an error: {str(e)}")
+
 
 # first start crawl_exam_paper , then crawl_exam_data.
 crawl_exam_paper()
