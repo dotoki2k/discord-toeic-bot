@@ -1,17 +1,19 @@
 import os
 import json
+import copy
 from question import Question
 
 
 def check_data_is_exist(session):
     result = session.query(Question).first() is not None
-    print(result)
     return result
 
 
 def insert_data_to_db(session):
     if check_data_is_exist(session):
+        print("The database already exists")
         return None
+    print("Inserting data ...")
     directory = "./data"
     count = 0
     for file in os.scandir(directory):
@@ -31,3 +33,13 @@ def insert_data_to_db(session):
         session.add_all(list_questions)
         session.commit()
     print(f"total question: {count}")
+
+
+def fetch_data(session):
+    """Fetch 5 rows data."""
+    questions = session.query(Question).limit(5).all()
+    new = copy.deepcopy(questions)
+    for q in questions:
+        session.delete(q)
+    session.commit()
+    return new

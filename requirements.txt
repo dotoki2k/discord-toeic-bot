@@ -2,4 +2,5 @@ beautifulsoup4
 requests
 sqlalchemy
 black
-psycopg2-binary
+discord.py
+python-dotenv
