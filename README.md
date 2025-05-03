@@ -32,3 +32,5 @@ The script for crawling is located in the folder `./tools`.
 
 - ### How to get bot Discord token?
   just following this video: https://youtu.be/Gqurhm2QxA0.
+- ### How to use bot:
+  Just type `bcs! part5` and send it in the discord channel, and the bot will send the question on this channel.
