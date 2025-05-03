@@ -36,7 +36,7 @@ def insert_data_to_db(session):
 
 
 def fetch_data(session):
-    """Fetch 5 rows data."""
+    """Fetch 5 rows data from database and remove it."""
     questions = session.query(Question).limit(5).all()
     new = copy.deepcopy(questions)
     for q in questions:

@@ -84,7 +84,7 @@ def crawl_exam_paper():
         with open("./data_exam_paper_url.json", "w") as jf:
             jf.write(json_object)
     except Exception as e:
-        print(f"Got an error: {str(e)}")
+        print(f"Got an error when crawling the exam papers: {str(e)}")
 
 
 def crawl_exam_data():
@@ -97,7 +97,7 @@ def crawl_exam_data():
         total_question = {}
 
         for k, v in dict_url_data.items():
-
+            # get transcript data from transcript link.
             response_transcript = requests.get(
                 v["transcript"], headers=headers, cookies=cookies, verify=False
             )
@@ -165,7 +165,7 @@ def crawl_exam_data():
             fw.write(json_object)
         total_question = {}
     except Exception as e:
-        print(f"Got an error: {str(e)}")
+        print(f"Got an error when crawling the questions: {str(e)}")
 
 
 # first start crawl_exam_paper , then crawl_exam_data.

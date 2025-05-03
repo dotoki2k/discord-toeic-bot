@@ -1,10 +1,11 @@
+import os
 import discord
 from dotenv import load_dotenv
 from connect_db import session
 from common import insert_data_to_db, fetch_data
 
 load_dotenv()
-TOKEN = ""
+TOKEN = os.getenv("DISCORD_TOKEN", "")
 
 insert_data_to_db(session)
 intents = discord.Intents.all()
@@ -21,7 +22,7 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    # Food
+    # check command.
     if message.content.startswith("bcs! part5"):
         data = fetch_data(session)
         msg = ""
